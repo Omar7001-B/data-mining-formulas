@@ -185,17 +185,20 @@ where:
 \begin{itemize}
     \item \( v \) = Original value  
     \item \( \text{mean}_A \) = Mean of the original dataset  
+    \[
+    \text{mean}_A = \frac{1}{n}\sum_{i=1}^{n} x_i
+    \]
     \item \( \text{stand\_dev}_A \) = Standard deviation of the original dataset  
+    \[
+    \text{Population: } \sigma = \sqrt{\frac{1}{n}\sum_{i=1}^{n} (x_i - \text{mean}_A)^2}
+    \]
+    \[
+    \text{Sample: } s = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n} (x_i - \text{mean}_A)^2}
+    \]
     \item \( v' \) = Normalized value
 \end{itemize}
 
-\textbf{Rules:}
-\begin{itemize}
-    \item \textbf{Mean rule:} The Z-score normalization shifts the dataset such that the mean of the transformed data becomes 0.  
-    \item \textbf{Standard deviation rule:} The Z-score normalization scales the dataset so that the standard deviation of the transformed data becomes 1.  
-\end{itemize}
-
-The Z-score normalization transforms the data to have a **mean of 0** and a **standard deviation of 1**, making it useful for comparing data from different distributions.
+The Z-score normalization transforms the data to have a \textbf{mean of 0} and a \textbf{standard deviation of 1}, making it useful for comparing data from different distributions.
 
 \vspace{0.5cm}
 
