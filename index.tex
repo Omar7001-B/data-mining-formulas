@@ -218,4 +218,84 @@ This transformation scales the data by dividing each value by a power of 10, whe
 
 \vspace{0.5cm}
 
+\newpage % Start a new page
+
+\section*{\centering Five-Number Summary}
+
+\subsection*{1. Even-Length Datasets}
+
+\textbf{Formula:}
+\[
+\text{Five-number summary} = (\text{Minimum}, Q1, \text{Median (Q2)}, Q3, \text{Maximum})
+\]
+where:
+\begin{itemize}
+    \item \( Q1 \) = Median of the first half
+    \item \( Q2 \) = Overall median (average of middle two values)
+    \item \( Q3 \) = Median of the second half
+\end{itemize}
+
+\textbf{Example 1:}  
+Given the dataset: \([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\)
+
+\begin{itemize}
+    \item \textbf{Minimum:} 1
+    \item \textbf{Maximum:} 10
+    \item \textbf{Median (Q2):} Average of 5th and 6th values = \(\frac{5+6}{2} = 5.5\)
+    \item \textbf{Q1:} Median of \([1, 2, 3, 4, 5]\) = 3
+    \item \textbf{Q3:} Median of \([6, 7, 8, 9, 10]\) = 8
+\end{itemize}
+
+\textbf{Five-number summary:} \((1, 3, 5.5, 8, 10)\)
+
+\vspace{0.5cm}
+
+\textbf{Example 2:}  
+Given the dataset: \([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]\)
+
+\begin{itemize}
+    \item \textbf{Minimum:} 1
+    \item \textbf{Maximum:} 12
+    \item \textbf{Median (Q2):} Average of 6th and 7th values = \(\frac{6+7}{2} = 6.5\)
+    \item \textbf{Q1:} Median of \([1, 2, 3, 4, 5, 6]\) = \(\frac{3+4}{2} = 3.5\)
+    \item \textbf{Q3:} Median of \([7, 8, 9, 10, 11, 12]\) = \(\frac{9+10}{2} = 9.5\)
+\end{itemize}
+
+\textbf{Five-number summary:} \((1, 3.5, 6.5, 9.5, 12)\)
+
+\vspace{0.5cm}
+
+\hrule
+\vspace{0.5cm}
+
+\subsection*{2. Odd-Length Datasets}
+
+\textbf{Example 3:}  
+Given the dataset: \([1, 2, 3, 4, 5, 6, 7, 8, 9]\)
+
+\begin{itemize}
+    \item \textbf{Minimum:} 1
+    \item \textbf{Maximum:} 9
+    \item \textbf{Median (Q2):} 5th value = 5
+    \item \textbf{Q1:} Median of \([1, 2, 3, 4]\) = \(\frac{2+3}{2} = 2.5\)
+    \item \textbf{Q3:} Median of \([6, 7, 8, 9]\) = \(\frac{7+8}{2} = 7.5\)
+\end{itemize}
+
+\textbf{Five-number summary:} \((1, 2.5, 5, 7.5, 9)\)
+
+\vspace{0.5cm}
+
+\textbf{Example 4:}  
+Given the dataset: \([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]\)
+
+\begin{itemize}
+    \item \textbf{Minimum:} 1
+    \item \textbf{Maximum:} 11
+    \item \textbf{Median (Q2):} 6th value = 6
+    \item \textbf{Q1:} Median of \([1, 2, 3, 4, 5]\) = 3
+    \item \textbf{Q3:} Median of \([7, 8, 9, 10, 11]\) = 9
+\end{itemize}
+
+\textbf{Five-number summary:} \((1, 3, 6, 9, 11)\)
+
 \end{document}
