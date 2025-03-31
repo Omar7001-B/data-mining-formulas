@@ -1,0 +1,218 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{xcolor,geometry,amsmath,tikz}
+\usepackage{everypage}
+
+% Set page background to black and text color to white
+\pagecolor{black}
+\color{white}
+
+% Reduce margins to use more space
+\geometry{top=1.5cm, bottom=1.5cm, left=2cm, right=2cm}
+
+% Load TikZ calc library
+\usetikzlibrary{calc}
+
+% Watermark configuration
+\AddEverypageHook{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[opacity=0.7,font=\small] at ($(current page.south east)+(-1.5cm,0.5cm)$) { Omar Abbas};
+  \end{tikzpicture}%
+}
+
+\begin{document}
+
+\section*{\centering Simple Discretization Methods: Binning}
+
+\subsection*{1. Equal-Width (Distance) Partitioning}
+
+\textbf{Formula:}
+\[
+W = \frac{B - A}{N}
+\]
+where:
+\begin{itemize}
+    \item \( W \) = Width of each interval  
+    \item \( A \) = Minimum value in the dataset  
+    \item \( B \) = Maximum value in the dataset  
+    \item \( N \) = Number of bins  
+\end{itemize}
+
+\textbf{Example:}  
+Given the dataset:  
+\[
+\{1, 3, 7, 10, 15, 18, 22, 25\}
+\]
+Let \( N = 3 \), \( A = 1 \), \( B = 25 \).
+
+\textbf{Step 1: Compute Interval Width}
+\[
+W = \frac{25 - 1}{3} = \frac{24}{3} = 8
+\]
+
+\textbf{Step 2: Define Bins}
+\begin{itemize}
+    \item \textbf{Bin 1:} \([1, 9)\) → contains \(\{1, 3, 7\}\)
+    \item \textbf{Bin 2:} \([9, 17)\) → contains \(\{10, 15\}\)
+    \item \textbf{Bin 3:} \([17, 25]\) → contains \(\{18, 22, 25\}\)
+\end{itemize}
+
+This method is \textbf{simple and intuitive}, but \textbf{outliers} and \textbf{skewed data} can make it less effective.
+
+\vspace{0.5cm}
+
+\subsection*{2. Equal-Depth (Frequency) Partitioning}
+
+\textbf{Concept:}  
+Each bin should have \textbf{approximately the same number of elements}.
+
+\textbf{Example:}  
+Given the dataset:
+\[
+\{1, 3, 7, 10, 15, 18, 22, 25\}
+\]
+Let \( N = 3 \). Since there are \textbf{8 elements},  
+each bin should have about \(\frac{8}{3} \approx 3\) elements.
+
+\textbf{Step 1: Sort Data}  
+\[
+\{1, 3, 7, 10, 15, 18, 22, 25\}
+\]
+
+\textbf{Step 2: Assign Bins}
+\begin{itemize}
+    \item \textbf{Bin 1:} \(\{1, 3, 7\}\)
+    \item \textbf{Bin 2:} \(\{10, 15, 18\}\)
+    \item \textbf{Bin 3:} \(\{22, 25\}\)
+\end{itemize}
+
+This method ensures \textbf{equal distribution} of data points in each bin,  
+making it \textbf{better for skewed data}.
+
+\newpage % Start a new page
+
+\section*{\centering Bin Processing Methods}
+
+\subsection*{1. Bin Means}
+\textbf{Concept:}  
+Replace all values in a bin with the \textbf{mean} (average) of that bin.
+
+\textbf{Example:}  
+Using the same bins from equal-width partitioning:
+
+\begin{itemize}
+    \item \textbf{Bin 1:} \(\{1, 3, 7\}\) → Mean = \(\frac{1+3+7}{3} = 3.67\) → \(\{3.67, 3.67, 3.67\}\)
+    \item \textbf{Bin 2:} \(\{10, 15\}\) → Mean = \(\frac{10+15}{2} = 12.5\) → \(\{12.5, 12.5\}\)
+    \item \textbf{Bin 3:} \(\{18, 22, 25\}\) → Mean = \(\frac{18+22+25}{3} = 21.67\) → \(\{21.67, 21.67, 21.67\}\)
+\end{itemize}
+
+\textbf{Pros:} Reduces variance.  
+\textbf{Cons:} May hide important variations in data.
+
+\vspace{0.5cm}
+
+\subsection*{2. Bin Medians}
+\textbf{Concept:}  
+Replace all values in a bin with the \textbf{median} of that bin.  
+The \textbf{median} is the middle value when the numbers are sorted. If there is an even number of elements, the median is the average of the two middle values.
+
+\textbf{Example:}
+\begin{itemize}
+    \item \textbf{Bin 1:} \(\{1, 3, 7\}\) → Sorted: \(\{1, 3, 7\}\), Median = \(3\) → \(\{3, 3, 3\}\)
+    \item \textbf{Bin 2:} \(\{10, 15\}\) → Sorted: \(\{10, 15\}\), Median = \(\frac{10 + 15}{2} = 12.5\) → \(\{12.5, 12.5\}\)
+    \item \textbf{Bin 3:} \(\{18, 22, 25\}\) → Sorted: \(\{18, 22, 25\}\), Median = \(22\) → \(\{22, 22, 22\}\)
+\end{itemize}
+
+\textbf{Pros:} Handles outliers better than means.  
+\textbf{Cons:} May not capture overall distribution well.
+
+\vspace{0.5cm}
+
+\subsection*{3. Bin Boundaries}
+\textbf{Concept:}  
+Replace each value with the nearest boundary value in the bin.
+
+\textbf{Example:}
+\begin{itemize}
+    \item \textbf{Bin 1:} \(\{1, 3, 7\}\) → Boundaries: \(1, 7\)  
+          - \(1 \to 1\), \(3 \to 1\), \(7 \to 7\) → \(\{1, 1, 7\}\)
+    \item \textbf{Bin 2:} \(\{10, 15\}\) → Boundaries: \(10, 15\)  
+          - \(10 \to 10\), \(15 \to 15\) → \(\{10, 15\}\)
+    \item \textbf{Bin 3:} \(\{18, 22, 25\}\) → Boundaries: \(18, 25\)  
+          - \(18 \to 18\), \(22 \to 25\), \(25 \to 25\) → \(\{18, 25, 25\}\)
+\end{itemize}
+
+\textbf{Pros:} Good for preserving extreme values.  
+\textbf{Cons:} Can distort middle-range values.
+
+\newpage % Start a new page
+
+\section*{\centering Data Transformation: Normalization}
+
+\subsection*{1. Min-Max Normalization}
+
+\textbf{Formula:}
+\[
+v' = \frac{v - \text{min}_A}{\text{max}_A - \text{min}_A} \times (\text{new\_max}_A - \text{new\_min}_A) + \text{new\_min}_A
+\]
+where:
+\begin{itemize}
+    \item \( v \) = Original value  
+    \item \( \text{min}_A \) = Minimum value of the original dataset  
+    \item \( \text{max}_A \) = Maximum value of the original dataset  
+    \item \( \text{new\_min}_A \) = Minimum value of the new range  
+    \item \( \text{new\_max}_A \) = Maximum value of the new range  
+    \item \( v' \) = Normalized value
+\end{itemize}
+
+\textbf{Example:}  
+Convert age = 30 to a range [0, 1], where \( \text{min} = 10 \) and \( \text{max} = 80 \):
+
+\[
+v' = \frac{30 - 10}{80 - 10} = \frac{20}{70} = \frac{2}{7} \approx 0.2857
+\]
+
+This transformation scales the value to fall between the new range, in this case, between 0 and 1.
+
+\vspace{0.5cm}
+
+\subsection*{2. Z-Score Normalization}
+
+\textbf{Formula:}
+\[
+v' = \frac{v - \text{mean}_A}{\text{stand\_dev}_A}
+\]
+where:
+\begin{itemize}
+    \item \( v \) = Original value  
+    \item \( \text{mean}_A \) = Mean of the original dataset  
+    \item \( \text{stand\_dev}_A \) = Standard deviation of the original dataset  
+    \item \( v' \) = Normalized value
+\end{itemize}
+
+\textbf{Rules:}
+\begin{itemize}
+    \item \textbf{Mean rule:} The Z-score normalization shifts the dataset such that the mean of the transformed data becomes 0.  
+    \item \textbf{Standard deviation rule:} The Z-score normalization scales the dataset so that the standard deviation of the transformed data becomes 1.  
+\end{itemize}
+
+The Z-score normalization transforms the data to have a **mean of 0** and a **standard deviation of 1**, making it useful for comparing data from different distributions.
+
+\vspace{0.5cm}
+
+\subsection*{3. Normalization by Decimal Scaling}
+
+\textbf{Formula:}
+\[
+v' = \frac{v}{10^j}
+\]
+where \( j \) is the smallest integer such that:
+
+\[
+\text{Max}\left(|v'|\right) < 1
+\]
+
+This transformation scales the data by dividing each value by a power of 10, where the exponent \( j \) is chosen to ensure the maximum absolute value of \( v' \) is less than 1.
+
+\vspace{0.5cm}
+
+\end{document}
