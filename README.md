@@ -10,6 +10,8 @@ Required tools and extensions:
 - Perl
 - LaTeX Workshop Extension for VSCode
 
+Setup tutorial: [LaTeX Setup Guide](https://youtu.be/4lyHIQl4VM8)
+
 ## Usage
 
 1. Edit `index.tex` to modify or add formulas
