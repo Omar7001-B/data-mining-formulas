@@ -369,4 +369,100 @@ x_p & \text{if } p \text{ is integer} \\
 \text{Bin Width} = \frac{\text{Range}}{k} \quad (k = \text{number of bins})
 \]
 
+\newpage % Start a new page
+
+\section*{\centering Association Rules and Related Measures}
+
+\subsection*{1. Support Count ($\sigma$)}
+\textbf{Definition:} Frequency of occurrence of an itemset \(X\).
+
+\textbf{Formula:}
+\[
+\sigma(X) = \text{Number of transactions containing } X
+\]
+
+\vspace{1cm}
+
+\subsection*{2. Support ($s$)}
+\textbf{Definition:} Fraction of transactions containing an itemset \(X\).
+
+\textbf{Formula:}
+\[
+s(X) = \frac{\sigma(X)}{|T|}, \quad \text{where } |T| = \text{total number of transactions}
+\]
+
+\vspace{1cm}
+
+\subsection*{3. Confidence ($c$)}
+\textbf{Definition:} Conditional probability of a transaction containing \(Y\) given it contains \(X\).
+
+\textbf{Formula (for rule $X \Rightarrow Y$):}
+\[
+c(X \Rightarrow Y) = \frac{\sigma(X \cup Y)}{\sigma(X)}
+\]
+
+\vspace{1cm}
+
+\subsection*{4. Association Rule}
+\textbf{Form:} \(X \Rightarrow Y\), where:
+\begin{itemize}
+    \item \(X \subset I\)
+    \item \(Y \subset I\)
+    \item \(X \cap Y = \emptyset\)
+\end{itemize}
+
+\textbf{Example:} \(\{x,y\} \Rightarrow z\)
+
+\vspace{1cm}
+
+\subsection*{Thresholds}
+\begin{itemize}
+    \item \textbf{Minimum Support (minsup):}\\
+          Itemset \(X\) is ``frequent'' if \(s(X) \geq \text{minsup}\)
+    \vspace{0.3cm}
+    \item \textbf{Minimum Confidence (minconf):}\\
+          Rule \(X \Rightarrow Y\) is valid if \(c(X \Rightarrow Y) \geq \text{minconf}\)
+\end{itemize}
+
+\vspace{1cm}
+
+\subsection*{Notation Summary}
+\begin{itemize}
+    \item \(\sigma(X)\): Support count of itemset \(X\)
+    \item \(|T|\): Total number of transactions
+    \item \(X \cup Y\): Union of itemsets \(X\) and \(Y\)
+    \item \(X \cap Y\): Intersection of itemsets \(X\) and \(Y\)
+    \item \(X \subset I\): \(X\) is a subset of itemset \(I\)
+\end{itemize}
+
+\newpage % Start a new page
+
+\section*{\centering Key Examples of Association Rules}
+
+\subsection*{1. Support Calculation}
+\[
+s(\{\text{Milk, Diaper, Beer}\}) = \frac{\sigma(\{\text{Milk, Diaper, Beer}\})}{|T|} = \frac{2}{5} = 0.4
+\]
+
+\textbf{Explanation:}
+\begin{itemize}
+    \item Total transactions: \(|T| = 5\)
+    \item Transactions containing \{\text{Milk, Diaper, Beer}\}: \(\sigma = 2\)
+    \item Support is the fraction: \(\frac{2}{5} = 0.4\) or 40\%
+\end{itemize}
+
+\vspace{1cm}
+
+\subsection*{2. Confidence Calculation}
+\[
+c(\{\text{Milk, Diaper}\} \Rightarrow \text{Beer}) = \frac{\sigma(\{\text{Milk, Diaper, Beer}\})}{\sigma(\{\text{Milk, Diaper}\})} = \frac{2}{3} \approx 0.67
+\]
+
+\textbf{Explanation:}
+\begin{itemize}
+    \item Transactions containing \{\text{Milk, Diaper, Beer}\}: \(\sigma = 2\)
+    \item Transactions containing \{\text{Milk, Diaper}\}: \(\sigma = 3\)
+    \item Confidence is the fraction: \(\frac{2}{3} \approx 0.67\) or 67\%
+\end{itemize}
+
 \end{document}
